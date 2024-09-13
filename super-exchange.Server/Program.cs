@@ -1,4 +1,8 @@
+using super_exchange.Server.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Configuration.AddJsonFile("appsettings.Development.json", true);
 
 // Add services to the container.
 
@@ -6,6 +10,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddDatabase(builder.Configuration);
 
 var app = builder.Build();
 
