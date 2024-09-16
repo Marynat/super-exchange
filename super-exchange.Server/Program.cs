@@ -1,4 +1,6 @@
+using Microsoft.Extensions.DependencyInjection;
 using super_exchange.Server.Extensions;
+using super_exchange.Server.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +14,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDatabase(builder.Configuration);
+builder.Services.AddClients();
+builder.Services.AddMappers();
+builder.Services.AddHostedService<CurrencyHostedService>();
+builder.Services.AddFacades();
 
 var app = builder.Build();
 
